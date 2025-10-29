@@ -45,12 +45,8 @@ E.P.S.O/
 ### Step 1: Create the Extension Files
 
 1. Create a new folder called `E.P.S.O`
-2. Inside it, create the following subfolders:
-   - `popup/`
-   - `options/`
-   - `icons/`
 
-3. Copy each file to its correct location:
+2. Copy each file to its correct location:
    - `manifest.json` → root folder
    - `background.js` → root folder
    - `content.js` → root folder
