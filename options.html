@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>E.P.S.O Settings</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    .header p {
+      opacity: 0.9;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      color: #1e3c72;
+      font-size: 22px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: #f9fafb;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      transition: all 0.2s;
+    }
+
+    .setting-item:hover {
+      background: #f3f4f6;
+      transform: translateX(5px);
+    }
+
+    .setting-info {
+      flex: 1;
+    }
+
+    .setting-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 5px;
+    }
+
+    .setting-description {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .switch {
+      position: relative;
+      width: 54px;
+      height: 28px;
+      margin-left: 20px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #d1d5db;
+      transition: 0.3s;
+      border-radius: 28px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    input:checked + .slider {
+      background-color: #4ade80;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .advanced-settings {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .advanced-settings h3 {
+      color: #92400e;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .advanced-settings p {
+      color: #78350f;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .tracker-list {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 20px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .tracker-list h3 {
+      color: #1e3c72;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    .tracker-item {
+      padding: 10px;
+      background: white;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #374151;
+      border-left: 3px solid #ef4444;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-box {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: white;
+      padding: 25px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 2px solid #e5e7eb;
+    }
+
+    button {
+      flex: 1;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-save {
+      background: #4ade80;
+      color: white;
+    }
+
+    .btn-save:hover {
+      background: #22c55e;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(74, 222, 128, 0.4);
+    }
+
+    .btn-reset {
+      background: #ef4444;
+      color: white;
+    }
+
+    .btn-reset:hover {
+      background: #dc2626;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    }
+
+    .btn-export {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .btn-export:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+
+    .save-notice {
+      background: #d1fae5;
+      color: #065f46;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .save-notice.show {
+      display: block;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🛡️ E.P.S.O</h1>
+      <p>ESPECIALLY PROTECTED SECURED ONLINE - SETTINGS</p>
+    </div>
+
+    <div class="content">
+      <!-- Statistics -->
+      <div class="section">
+        <h2>📊 Protection Statistics</h2>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-number" id="totalBlocked">0</div>
+            <div class="stat-label">Total Blocked</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" id="trackersBlocked">0</div>
+            <div class="stat-label">Trackers Blocked</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" id="cookiesBlocked">0</div>
+            <div class="stat-label">Cookies Blocked</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" id="requestsModified">0</div>
+            <div class="stat-label">Requests Modified</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Protection Settings -->
+      <div class="section">
+        <h2>🔒 Core Protection Settings</h2>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">Block Tracking Requests</div>
+            <div class="setting-description">Blocks requests to known tracking and analytics domains like Google Analytics, Facebook Pixel, etc.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="blockTrackers" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">Block Third-Party Cookies</div>
+            <div class="setting-description">Prevents websites from setting cookies that track you across different sites.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="blockCookies" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">HTTPS Only Mode</div>
+            <div class="setting-description">Automatically upgrades all HTTP connections to secure HTTPS when possible.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="httpsOnly" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Anti-Fingerprinting Settings -->
+      <div class="section">
+        <h2>🎭 Anti-Fingerprinting Settings</h2>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">Spoof User Agent</div>
+            <div class="setting-description">Masks your browser identity by sending a generic User-Agent string.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="spoofUserAgent" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">Remove Referrer Headers</div>
+            <div class="setting-description">Prevents websites from knowing which page you came from.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="removeReferrer" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">Block WebRTC IP Leak</div>
+            <div class="setting-description">Prevents WebRTC from leaking your real IP address even when using a VPN.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="blockWebRTC" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">Canvas Fingerprinting Protection</div>
+            <div class="setting-description">Adds noise to canvas operations to prevent unique device identification.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="blockFingerprinting" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Blocked Trackers List -->
+      <div class="section">
+        <h2>🚫 Blocked Tracking Domains</h2>
+        <div class="tracker-list">
+          <h3>Currently blocking these domains:</h3>
+          <div class="tracker-item">google-analytics.com</div>
+          <div class="tracker-item">facebook.net</div>
+          <div class="tracker-item">doubleclick.net</div>
+          <div class="tracker-item">scorecardresearch.com</div>
+          <div class="tracker-item">amazon-adsystem.com</div>
+          <div class="tracker-item">googletagmanager.com</div>
+          <div class="tracker-item">googlesyndication.com</div>
+          <div class="tracker-item">facebook.com/tr</div>
+          <div class="tracker-item">connect.facebook.net</div>
+          <div class="tracker-item">adservice.google.com</div>
+          <div class="tracker-item">ads.twitter.com</div>
+          <div class="tracker-item">analytics.twitter.com</div>
+        </div>
+      </div>
+
+      <!-- Advanced Notice -->
+      <div class="advanced-settings">
+        <h3>⚠️ Advanced Protection Active</h3>
+        <p>E.P.S.O is actively protecting your privacy with canvas fingerprinting protection, WebGL spoofing, font fingerprinting prevention, and more advanced techniques. Some websites may not function correctly if they rely heavily on fingerprinting techniques.</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="button-group">
+        <button class="btn-save" id="saveSettings">💾 Save Settings</button>
+        <button class="btn-reset" id="resetStats">🔄 Reset Statistics</button>
+        <button class="btn-export" id="exportSettings">📤 Export Config</button>
+      </div>
+
+      <div class="save-notice" id="saveNotice">
+        ✓ Settings saved successfully!
+      </div>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
