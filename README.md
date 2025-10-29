@@ -32,10 +32,8 @@ E.P.S.O/
 ├── background.js          # Core privacy protection logic
 ├── content.js            # Content script for fingerprinting protection
 ├── injected.js           # Page context protection
-├── popup/
 |__popup.html        # Extension popup interface
 └── popup.js          # Popup functionality
-├── options/
 └── options.html      # Settings page (create this)
 └── icons/
     ├── shield-48.png     # Extension icon 48x48
