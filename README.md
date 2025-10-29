@@ -55,8 +55,8 @@ E.P.S.O/
    - `background.js` → root folder
    - `content.js` → root folder
    - `injected.js` → root folder
-   - `popup.html` → `popup/` folder
-   - `popup.js` → `popup/` folder
+   - `popup.html` → root folder
+   - `popup.js` → root folder
 
 ### Step 2: Create Icons
 
