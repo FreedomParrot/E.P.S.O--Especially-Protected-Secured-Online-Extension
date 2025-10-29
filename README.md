@@ -33,10 +33,10 @@ E.P.S.O/
 ├── content.js            # Content script for fingerprinting protection
 ├── injected.js           # Page context protection
 ├── popup/
-│   ├── popup.html        # Extension popup interface
-│   └── popup.js          # Popup functionality
+|__popup.html        # Extension popup interface
+└── popup.js          # Popup functionality
 ├── options/
-│   └── options.html      # Settings page (create this)
+└── options.html      # Settings page (create this)
 └── icons/
     ├── shield-48.png     # Extension icon 48x48
     └── shield-96.png     # Extension icon 96x96
